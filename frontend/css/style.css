@@ -1,0 +1,198 @@
+.webname{
+  margin-top:9px;
+  font-size: 40px;
+  letter-spacing: 2px;
+  font-family: Brush Script MT; 
+}
+.aaa{
+  background: #043e5a;
+  font-family: times;
+  font-size: 20px;
+  font-weight: bold;
+}
+.navlogo{
+  background: #2e3161;
+}
+.signin{
+  font-family: algerian;
+  border-bottom: 3px solid #2e3161;
+  padding: 10px;
+
+}
+
+.signbtn{
+  font-family: times;
+  height: 45px;
+  background: #2e3161;
+  color: white;
+  font-weight: bold;
+  opacity: 0.9;
+  float: right;
+  padding-right: 20px;
+  padding-left:  20px;
+  border-radius: 2%;
+}
+.signup{
+  font-family: algerian;
+  width: 400px;
+  border-bottom: 3px solid #2e3161;
+  padding: 20px;
+  margin: auto;
+  margin-bottom: 40px;
+}
+.signupform{
+  margin-top: 10px;
+  padding: 20px;
+}
+#container{
+    margin-top: 0.9px;
+}
+
+  .navbar {
+    margin-bottom: 0;
+    border-radius: 0;
+  }
+  
+  /* Set height of the grid so .sidenav can be 100% (adjust as needed) */
+  .row.content {height: 450px}
+  
+  /* Set gray background color and 100% height */
+  .sidenav {
+    padding-top: 20px;
+    background-color: #f1f1f1;
+    height: 100%;
+  }
+  
+  /* Set black background color, white text and some padding */
+  footer {
+    background-color: #555;
+    color: white;
+    padding: 15px;
+  }
+  
+  /* On small screens, set height to 'auto' for sidenav and grid */
+  @media screen and (max-width: 767px) {
+    .sidenav {
+      height: auto;
+      padding: 15px;
+    }
+    .row.content {height:auto;} 
+  }
+
+  --imagesliding
+
+  #slideimage{
+      height:300px;
+      width:100%;
+      background-repeat: no-repeat;
+      margin-top: 10%;
+     
+  }
+
+  .divimage{
+      margin-right: -13px;
+     
+     
+  }
+
+
+
+
+
+
+--Footer --section
+
+#divfoot1{
+    height: 100px;
+}
+
+#divfoot2{
+    margin-top: 50px;
+    height: 100px;
+}
+
+#divfoot3{
+    height: 100px;
+}
+
+#divfoot4{
+   
+    clear: both;
+    margin-top: 30px;
+}
+#footerdiv{
+    margin-top: 10px;
+    font-size: 15px;
+    color: whitesmoke;
+    text-align: center;
+    background: #043e5a;
+}
+
+.btn_student{
+  width: 120px;
+}
+
+.student_menu{
+  margin-top: 75px;
+  height: 100%;
+
+
+}
+
+.student_menu_class{
+  border:1px solid black;
+  height: 100%;
+  background: linear-gradient(rgb(41, 39, 39), rgb(68, 67, 67), rgb(77, 74, 74), rgb(32, 30, 30));
+}
+
+.table > thead > tr > th,
+.table > thead > tr > td {
+font-size: .9em;
+font-weight: 400;
+border-bottom: 0;
+letter-spacing: 1px;
+vertical-align: top;
+padding: 8px;
+background: #00081a;
+text-transform: uppercase;
+text-align: center;
+color: #ffffff;
+}
+
+.table-fixed tbody {
+  height: 200px;
+  overflow-y: auto;
+  }
+  .table-fixed thead,
+  .table-fixed tbody,
+  .table-fixed tr,
+  .table-fixed td,
+  .table-fixed th {
+  display: block;
+  }
+  .table-fixed tr:after {
+  content: "";
+  display: block;
+  visibility: hidden;
+  clear: both;
+  }
+  .table-fixed tbody td,
+  .table-fixed thead > tr > th {
+  float: left;
+  }
+
+  .input_email{
+    font-size: 15px;
+    background: #1a5c11;
+    color: #f1f1f1;
+    border-style: ridge;
+  }
+  .labelimp{
+    background: #1a5c11;
+    font-size: 15px;
+    color: white;
+  }
+
+ .input_length{
+   width: 50%;
+ }
