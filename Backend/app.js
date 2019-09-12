@@ -1,7 +1,7 @@
 require('./Database/database');
 const userModel=require('./Model/userModel');
 const adminModel=require('./Model/adminModel');
-
+const adminAuth=require('./MiddleWare/adminAuth');
 const express=require('express');
 const bodyparser=require('body-parser');
 const cors=require('cors');
@@ -26,7 +26,7 @@ app.post("/userRequest", (req, res) => {
  });
 
  ///API for Admin login
- app.post('/loginAdmin',async function(req, res){
+ app.post('/loginUser',async function(req, res){
     const user=req.body.email;// user
     const password=req.body.password; // pw
     const admin1 = await adminModel.checkCrediantialsDb(user,password);
