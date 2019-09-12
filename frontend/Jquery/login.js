@@ -1,103 +1,53 @@
 $(document).ready(function(){
-
-  
-    $('#login_admin').click(function () {  
-        email = $("#admin_email").val();
-        password = $("#admin_password").val();
+ 
+    $('#btn_login').click(function () {  
+        email = $("#user_email").val();
+        password = $("#user_password").val();
+        user_type=$("#user_type").val();
+        
         console.log(email);
         console.log(password);
+      
         data = {
         "email" : email,
-        "password" : password    
-        }                                        
-         $.ajax({  
-             url: 'http://localhost:94/loginAdmin/',
-             type: 'post',  
-             dataType: 'json',  
-             data:data,  
-             success: function (res, textStatus, xhr) {   
-               console.log(res)     
-               if(res.email<1){
-                 alert("Invalid username/password")
+        "password" : password   
+        }
+
+        if(user_type=="Admin"){                                  
+        $.ajax({  
+        
+         url: 'http://localhost:96/loginUser/',
+         type: 'post',  
+         dataType: 'json',  
+         data:data,  
+         success: function (res, textStatus, xhr) {   
+         console.log(res)   
+         if(res.email<1){
+         alert("Invalid username/password")
                }
-               else{
+               else{				
                 alert("Successfully Log In");
-                location.href=("adminDashboard.html");
-                //
-                           localStorage.setItem('token', res.token);						 
+                location.href=("test.html");
+                localStorage.setItem('token', res.token);	 
                  }  
                },
            
              error: function (xhr, textStatus, errorThrown) {  
                  console.log('Error in Operation');  
              }  
-         });
-
+         }); 
+        }
+        else if(user_type=="Student"){
+          alert("Invalid username/password student")
+        }
+       
+        else if(user_type=="Teacher"){
+          alert("Invalid username/password teacher")
+        }
+        else {
+          alert("Invalid usertype")
+        }
         });
-
-
-
-   $('#login_teacher').click(function () {  
-         email = $("#teacher_email").val();
-         password = $("#teacher_password").val();
-         
-        //  alert(password);
-        //  console.log(email);
-        //  console.log(password);
-         data = {
-         "email" : email,
-          "password" : password
-         }                                        
-        $.ajax({  
-         url: 'http://localhost:94/loginTeacher/',
-           type: 'post',  
-           dataType: 'json',  
-           data:data,  
-           success: function (res, textStatus, xhr) {   
-           
-           
-           
-            location.href=("teacherDashboard.html");
-            localStorage.setItem('token', res.token);
-           
-          
-                // alert(res.token);
-         					 
-        },  
-          error: function (xhr, textStatus, errorThrown) {  
-         console.log('Error in Operation');  
-                 }  
-             });
-    
-   });
-
-
-   $('#login_student').click(function () {  
-    email = $("#student_email").val();
-    password = $("#student_password").val();
-    data = {
-    "email" : email,
-     "password" : password
-    }                                        
-   $.ajax({  
-    url: 'http://localhost:94/loginStudent/',
-      type: 'post',  
-      dataType: 'json',  
-      data:data,  
-      success: function (res, textStatus, xhr) {   
-      console.log(res)     
-      location.href=("dashboard.html");
-           // alert("Successfully Log In");
-    localStorage.setItem('token', res.token);						 
-   },  
-     error: function (xhr, textStatus, errorThrown) {  
-    console.log('Error in Operation');  
-            }  
-        });
-
-});
-
-
 
 
 });
