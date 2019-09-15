@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <title>Document sharing site</title>
+  <title>Learning Management System</title>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
@@ -11,8 +11,6 @@
   <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" 
   rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   <link rel="stylesheet" href="../css/style.css">
-  <script src="../Jquery/request.js"></script>
-  <script src="../Jquery/login.js"></script>
  <script src="../Jquery/jquery-3.3.1.min.js"></script>
 </head>
 <body>
@@ -25,7 +23,7 @@
       <li><a href="#" class="webname" style="color: white;">Learning Management System</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-      <li><a href="#" style="margin: 9px; color: white;" class="aaa"> Sign In &nbsp;<i class="fa fa-sign-in" ></i> </a></li>
+      <li><a href="index.html" style="margin: 9px; color: white;" class="aaa"> Sign In &nbsp;<i class="fa fa-sign-in" ></i> </a></li>
     </ul>
   </div>
 </nav>
@@ -70,8 +68,7 @@
                     <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-id-card"></i></span>
                       <select class="form-control">
-                        <option >-----------------------------------UserType-----------------------------------</option>
-                        <option>Admin</option>
+                        <option >-----------UserType---------</option>
                         <option>Teacher</option>
                         <option>Student</option>
                       </select>
@@ -81,14 +78,14 @@
                   <p>
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                         <input type="email" name="uname" required="required" id="student_email" placeholder="Email" class="form-control" autocomplete="off">
+                         <input type="email" name="uname" required="required" id="email" placeholder="Email" class="form-control" autocomplete="off">
                     </div>
                   </p>
-                  
+
                   <p>
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                         <input type="number" name="contact" required="required" id="contact" placeholder="contact" class="form-control" autocomplete="off">
+                         <input type="number" name="phone" required="required" id="phone" placeholder="Phone" class="form-control" autocomplete="off">
                     </div>
                   </p>
                     
@@ -100,7 +97,7 @@
                   </p>
 
 
-                  <button type="submit" class="form-control signbtn"> Sign Up &nbsp;<i class="fa fa-user-plus"></i> </button>
+                  <a type="submit" class="btn btn-primary form-control signbtn"> Sign Up &nbsp;<i class="fa fa-user-plus"></i> </a>
 
                </form>
               </div>
