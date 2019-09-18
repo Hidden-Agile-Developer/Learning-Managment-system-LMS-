@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Learning Management System | Student</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" 
+  rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../Jquery/request.js"></script>
+  <script src="../Jquery/login.js"></script>
+ <script src="../Jquery/jquery-3.3.1.min.js"></script>
+<style>
+
+</style>
+</head>
+<body>
+
+  <nav class="navbar navbar-inverse navbar-fixed-top navlogo">
+  <div class="container-fluid">
+
+    <ul class="nav navbar-nav">
+      <li><a href="#"><img src="../Image/lms.png" style="width: 60px;margin: -10px;" class="img-circle"></a></li>
+      <li><a href="admindashboard.html" class="webname" style="color: white;">Learning Management System</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="signup.html" style="margin: 9px; color: white;" class="aaa"> Sign Out &nbsp; <i class="fa fa-outdent" ></i></a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container-fluid" style="height: 7vh;"></div>
+
+<div id="mySidenav" class="sidenav" >
+  <a href="teacheradmin.html" id="teacher">Teacher &nbsp;&nbsp;&nbsp;<i class="fa fa-text-width"></i></a>
+  <a href="studentadmin.html" id="student">Student &nbsp;&nbsp;&nbsp;<i class="fa fa-strikethrough"></i></a>
+  <a href="classadmin.html" id="class">Classes &nbsp;&nbsp;&nbsp;<i class="fa fa-contao"></i></a>
+  <a href="event.html" id="event">Events &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-etsy"></i></a>
+  <a href="adminrequest.html" id="request">Request &nbsp;&nbsp;&nbsp;<i class="fa fa-registered"></i></a>
+  <a href="adminprofile.html" id="profile">Profile &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-product-hunt"></i></a>
+</div>
+
+<div  class="container" style="margin-left:170px;margin-top: 20px;">
+
+    <h1  class="signup text-center">New Request</h1>
+
+  <div class="jumbotron" style="padding-top: none;">
+    
+    <div class="adminsearch" style="margin-right: 5px;">
+    <input class="searchinput" type="text" name="search" placeholder="Enter to Search..." id="">
+    <button class="btn btn-info"><i class="fa fa-search"></i></button>
+  </div>
+
+  <table class="table table-hover table-fixed" style="height: 40vh;">
+                    
+                    <thead>
+                      <tr>
+                        <th class="col-xs-3">Name</th>
+                        <th class="col-xs-3">Email</th>
+                        <th class="col-xs-2">Contact</th>
+                        <th class="col-xs-1">Gender</th>
+                        <th class="col-xs-2">Request type</th>
+                       <th class="col-xs-1">View</th>                       
+                      </tr>
+                    </thead>
+                    <tbody id="user_request_table">
+                       
+                    </tbody>
+                  </table>
+  </div>
+</div>
+
+<footer class="container-fluid text-center" id="footerdiv">
+  <div class="row">
+        <div id="footer" class="col-sm-12">
+                <div id="divfoot1" class="col-sm-3">
+                  <h2><b>Follow us<b></h2>
+               <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.facebook.com" id="footerdiv"><i class="fa fa-facebook-official"></i>&nbsp;&nbsp;Facebook</a></p>
+               <p><a href="http://www.twitter.com" id="footerdiv"><i class="fa fa-twitter"></i>&nbsp;&nbsp;twitter</a></p>
+               <p>&nbsp;&nbsp;<a href="http://www.linkden.com" id="footerdiv"><i class="fa fa-linkedin"></i>&nbsp;&nbsp;linkden</a></p>
+          
+                </div>
+          
+                <div id="divfoot2" class="col-sm-6">
+                   <p><i class="fa fa-phone"></i>&nbsp;&nbsp;<b>+977-45888844, 451231313</b></p>
+                   <p><i class="fa fa-envelope"></i>&nbsp;&nbsp;<b>lms@edu.gmail.com</b></p>
+                   <p id="divfoot4"><b>Copyright ©2019. All Rights Reserved (Hidden Agile Developer)</b></p>
+                  </div>
+
+                  <div id="divfoot3" class="col-sm-3">
+                        <h2>Be With us</h2>
+                    <p><b>For the Bright future. Experience the best knowledge with the help our technology<br>
+                    We are here for your bright future</b></p>
+                
+                      </div></div>
+</footer>
+</div>
+
+</body>
+<script type="text/javascript">
+  $(".button-collapse").sideNav();
+
+new WOW().init();
+</script>
+
+</html>
