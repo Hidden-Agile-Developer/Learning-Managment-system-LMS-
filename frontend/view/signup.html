@@ -12,6 +12,7 @@
   rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   <link rel="stylesheet" href="../css/style.css">
  <script src="../Jquery/jquery-3.3.1.min.js"></script>
+ <script src="../Jquery/signup.js"></script>
 </head>
 <body>
 
@@ -56,9 +57,9 @@
                   <p>
                      <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-universal-access"></i></span>
-                              <input class="gender_" type="radio" name="gender" id="gender" value="male" checked> Male&nbsp; <i class="fa fa-male"></i>&nbsp;&nbsp; 
+                              <input class="gender_" type="radio" name="gender"  value="male" checked> Male&nbsp; <i class="fa fa-male"></i>&nbsp;&nbsp; 
                               &nbsp;
-                              <input class="gender_" type="radio" name="gender" id="gender" value="female"> Female &nbsp;  <i class="fa fa-female"></i>
+                              <input class="gender_" type="radio" name="gender"  value="female"> Female &nbsp;  <i class="fa fa-female"></i>
                              </div>
 
                   </p>
@@ -67,7 +68,7 @@
                   <p>
                     <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-id-card"></i></span>
-                      <select class="form-control">
+                      <select class="form-control" id="user_type"
                         <option >-----------UserType---------</option>
                         <option>Teacher</option>
                         <option>Student</option>
@@ -85,127 +86,25 @@
                   <p>
                     <div class="input-group">
                       <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                         <input type="number" name="phone" required="required" id="phone" placeholder="Phone" class="form-control" autocomplete="off">
+                         <input type="number" name="phone" required="required" id="contact" placeholder="Phone" class="form-control" autocomplete="off">
                     </div>
                   </p>
                     
                   <p>
                     <div class="input-group">
                     <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                      <input type="password" name="password" required="required" class="form-control" placeholder="*******" id="student_password" autocomplete="off">
+                      <input type="password" name="password" required="required" class="form-control" placeholder="*******" id="password" autocomplete="off">
                     </div>
                   </p>
 
 
-                  <a type="submit" class="btn btn-primary form-control signbtn"> Sign Up &nbsp;<i class="fa fa-user-plus"></i> </a>
+                  <a type="submit" class="btn btn-primary form-control signbtn" id="btn_user_register"> Sign Up &nbsp;<i class="fa fa-user-plus"></i> </a>
 
                </form>
               </div>
             </div>
 
-        <!-- <div class="row content" >
-
-          <div class="col-sm-12">
-            
-             <div class="jumbotron" style="background: #fff; opacity: 0.9;">
-               <form>
-                  <p>
-                    <div class="input-group">
-                      <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                         <input type="text" name="uname" required="required" id="student_email" placeholder="username" class="form-control" autocomplete="off">
-                    </div>
-                  </p>
-                    
-                  <p>
-                    <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                      <input type="password" name="password" required="required" class="form-control" placeholder="*******" id="student_password" autocomplete="off">
-                    </div>
-                  </p>
-
-                  <p>
-                    <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-id-card"></i></span>
-                      <select class="form-control">
-                        <option >-----------------------------------UserType-----------------------------------</option>
-                        <option>Admin</option>
-                        <option>Teacher</option>
-                        <option>Student</option>
-                      </select>
-                    </div>
-                  </p>
-
-                  <button type="submit" class="form-control signbtn"> Sign-IN &nbsp;<i class="fa fa-sign-in"></i> </button>
-
-               </form> -->
-             </div>
-
-              <!-- <div>
-                    <div class="modal fade" role="dialog" id="signupmodel">
-                            <div class="modal-dialog modal-lg">
-                                <div class="modal-content">
-                                    <div class="modal-header">
-                                        <h3 class="modal-title">User Registeration</h3>
-                                    </div>
-                                    <div class="modal-body">
-                      <form>
-                        <h6 id="error_mail" class="text-danger font-style-bold"></h6>
-                          <p>
-                      <div class="input-group">
-                      <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                      <input type="text" name="first_name" id="first_name" placeholder="First Name" class="form-control" autocomplete="off"/>
-                        </div></p>
-                       
-                       <p> <div class="input-group">
-                        <span class="input-group-addon"><i class="fa fa-user"></i></span>
-                         <input type="text" name="last_name" id="last_name" placeholder="Last Name" class="form-control" autocomplete="off"/>
-                         </div> 
-                        </p>
-
-                        <p>
-                          <div class="form-group">
-                           
-                              <p><i class="fa fa-male"></i>
-                              &nbsp;<input class="gender_" type="radio" name="gender" id="gender" value="male" checked>Male&nbsp;&nbsp;&nbsp; 
-                              <i class="fa fa-female"></i>&nbsp;
-                              <input class="gender_" type="radio" name="gender" id="gender" value="female">Female&nbsp;&nbsp;&nbsp;
-                              <i class="fa fa-transgender-alt"></i>&nbsp;
-                              <input class="gender_" type="radio" name="gender" id="gender"  value="other">Other</p>   
-                             </div>
-                      
-
-                           </p>
-                             <p>
-                            <div class="input-group">
-                                <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-                            <select name="user_type" id="user_type" class="form-control selectpicker">
-                              <option>student</option>
-                              <option>teacher</option>
-                             
-                             </select>
-                          </div>
-                          </p>
-
-
-                     <p><div class="input-group">
-                     <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
-                    <input type="email" name="email" id="email" placeholder="Your Email" class="form-control" autocomplete="off"/>
-                    </div></p>
-
-                 <p>   <div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-phone"></i></span>
-                    <input type="tel" name="contact" id="contact" placeholder="+977-00000000" maxlength="15" minlength="10" class="form-control" autocomplete="off"/>
-                     </div></p>
-
-                     <p><div class="input-group">
-                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                    <input type="password" name="password" id="password" placeholder="Password" class="form-control" autocomplete="off"/>
-                    </div></p>
-                    
-
-                       
-
-                   </div>-->
+       
        </div> 
 
      

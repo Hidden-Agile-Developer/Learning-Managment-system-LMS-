@@ -1,0 +1,196 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Learning Management System | Student</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
+  <script src="http://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/js/bootstrap.min.js"></script>
+  <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" 
+  rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+  <link rel="stylesheet" href="../css/style.css">
+  <script src="../Jquery/RequestUser.js"></script>
+  <script src="../Jquery/faculty.js"></script>
+  <script src="../Jquery/imageload.js"></script>
+ <script src="../Jquery/jquery-3.3.1.min.js"></script>
+<style>
+
+</style>
+</head>
+<body>
+
+  <nav class="navbar navbar-inverse navbar-fixed-top navlogo">
+  <div class="container-fluid">
+
+    <ul class="nav navbar-nav">
+      <li><a href="#"><img src="../Image/lms.png" style="width: 60px;margin: -10px;" class="img-circle"></a></li>
+      <li><a href="admindashboard.html" class="webname" style="color: white;">Learning Management System</a></li>
+    </ul>
+    <ul class="nav navbar-nav navbar-right">
+      <li><a href="signup.html" style="margin: 9px; color: white;" class="aaa"> Sign Out &nbsp; <i class="fa fa-outdent" ></i></a></li>
+    </ul>
+  </div>
+</nav>
+
+<div class="container-fluid" style="height: 7vh;"></div>
+
+<div id="mySidenav" class="sidenav" >
+  <a href="teacheradmin.html" id="teacher">Teacher &nbsp;&nbsp;&nbsp;<i class="fa fa-text-width"></i></a>
+  <a href="studentadmin.html" id="student">Student &nbsp;&nbsp;&nbsp;<i class="fa fa-strikethrough"></i></a>
+  <a href="classadmin.html" id="class">Classes &nbsp;&nbsp;&nbsp;<i class="fa fa-contao"></i></a>
+  <a href="event.html" id="event">Events &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-etsy"></i></a>
+  <a href="adminrequest.html" id="request">Request &nbsp;&nbsp;&nbsp;<i class="fa fa-registered"></i></a>
+  <a href="adminprofile.html" id="profile">Profile &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-product-hunt"></i></a>
+</div>
+
+<div  class="container" style="margin-left:170px;margin-top: 20px;">
+
+      <h1  class="signup text-center">User Request</h1>
+
+    <div class="jumbotron">
+      
+      <div class="row">
+      	<form enctype="multipart/FormData" id="user_form">
+      	<div class="col-md-4">
+      		
+      		<div class="input-group">
+              
+                <img id="user_image" src="../image/userimage.png" width="200px" height="200px"> <br></br>
+                
+                <input type='file' onchange="readURL(this); " id="profile_image" /><br></br><br></br><br></br>
+
+                <p> <label class="label label-info" style="margin: 10px;padding: 5px; font-size: 15px;">Action</label></p>                                          
+     <a type="submit" value="submit" id="btn_user_Approval" class="btn btn-success" style="margin: 10px;padding: 5px;">Confir'</a>
+     <a  id="delete_request"  class="btn btn-danger" style="margin: 10px;padding: 5px;">Delete</a>  
+              </div> 
+      	</div>
+      	<div class="col-md-8">
+      		 
+             <p>
+
+              <div class="input-group">
+               <span class="input-group-addon"><label class="label label-info" style="font-size: 15px">applied For user type</label></i></span>
+              <input type="text" name="user_type" id="user_type" placeholder="user type" class="form-control" disabled/>
+              </div>
+              </p>
+        
+          <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-user"></i></span>
+          <input type="text" name="first_name" id="first_name" placeholder="First Name" class="form-control" autocomplete="off"/>
+          </div>
+        </p>
+            
+         <p> <div class="input-group">
+          <span class="input-group-addon"><i class="fa fa-user"></i></span>
+          <input type="text" name="last_name" id="last_name" placeholder="Last Name" class="form-control" autocomplete="off"/>
+         </div> 
+         </p>
+        
+         <p>
+        <div class="input-group">
+        <p><i class="fa fa-male"></i>&nbsp;<input type="radio" name="gender" value="male" checked>Male&nbsp;&nbsp;&nbsp; 
+        <i class="fa fa-female"></i>&nbsp;<input type="radio" name="gender"  value="female">Female&nbsp;&nbsp;&nbsp;
+        <i class="fa fa-transgender-alt"></i>&nbsp;<input type="radio"  name="gender" value="other">Other</p>   
+        </div>
+        </p>
+
+          <p>
+
+          <div class="input-group">
+          <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+          <select value="subject" name="subject" id="subject" class="form-control selectpicker">
+          </select>
+          </div>
+         </p>
+
+         <p>
+         <div class="input-group">
+                <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+                <select value="semister" name="semister" id="semister" class="form-control selectpicker">
+                <option>I</option>
+                <option>II</option>
+                <option >III</option>
+                <option >IV</option>
+                <option >V</option>
+                <option >VI</option>
+                <option >VII</option>
+                <option >VIII</option>
+        </select>
+        </div>
+    </p>
+
+    <div class="input-group">
+        <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
+        <select value="section" name="section" id="section" class="form-control selectpicker">
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+        <option>D</option>
+       </select>
+</div>
+</p>
+
+           
+      <p><div class="input-group">
+      <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
+      <input type="email" name="email" id="email" placeholder="Your Email" class="form-control"/>
+      </div></p>
+        
+      <p><div class="input-group">
+      <span class="input-group-addon"><i class="fa fa-phone"></i></span>
+      <input type="tel" name="contact" id="contact" placeholder="+977-00000000" maxlength="15" minlength="10" class="form-control"/>
+    </div>
+      </p>
+        
+      <p><div class="input-group">
+      <span class="input-group-addon"><i class="fa fa-key"></i></span>
+      <input type="password" name="password" id="password" placeholder="Password" class="form-control" disabled/>
+      </div>
+      </p>
+                                              
+                                  
+      	</div>
+
+      </form>
+      </div>
+    </div>
+
+  
+</div>
+
+<footer class="container-fluid text-center" id="footerdiv">
+  <div class="row">
+        <div id="footer" class="col-sm-12">
+                <div id="divfoot1" class="col-sm-3">
+                  <h2><b>Follow us<b></h2>
+               <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="http://www.facebook.com" id="footerdiv"><i class="fa fa-facebook-official"></i>&nbsp;&nbsp;Facebook</a></p>
+               <p><a href="http://www.twitter.com" id="footerdiv"><i class="fa fa-twitter"></i>&nbsp;&nbsp;twitter</a></p>
+               <p>&nbsp;&nbsp;<a href="http://www.linkden.com" id="footerdiv"><i class="fa fa-linkedin"></i>&nbsp;&nbsp;linkden</a></p>
+          
+                </div>
+          
+                <div id="divfoot2" class="col-sm-6">
+                   <p><i class="fa fa-phone"></i>&nbsp;&nbsp;<b>+977-45888844, 451231313</b></p>
+                   <p><i class="fa fa-envelope"></i>&nbsp;&nbsp;<b>lms@edu.gmail.com</b></p>
+                   <p id="divfoot4"><b>Copyright ©2019. All Rights Reserved (Hidden Agile Developer)</b></p>
+                  </div>
+
+                  <div id="divfoot3" class="col-sm-3">
+                        <h2>Be With us</h2>
+                    <p><b>For the Bright future. Experience the best knowledge with the help our technology<br>
+                    We are here for your bright future</b></p>
+                
+                      </div></div>
+</footer>
+</div>
+
+</body>
+<script type="text/javascript">
+  $(".button-collapse").sideNav();
+
+new WOW().init();
+</script>
+
+</html>
