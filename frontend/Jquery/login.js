@@ -27,7 +27,7 @@ $(document).ready(function () {
                     }
                     else {
                         alert("Successfully Log In");
-                        location.href = ("test.html");
+                        location.href = ("admindashboard.html");
                         localStorage.setItem('token', res.token);
                     }
                 },
