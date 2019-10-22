@@ -270,6 +270,14 @@ res.send(e);
 });
 });
 
+///API to view student
+app.get("/ViewStudent", function(req,res){
+   studentModel.find().then(function(studentModel){
+   res.send(studentModel);
+   }).catch(function(e){
+   res.send(e);
+   });
+   });
 
 
  ///Server Port
