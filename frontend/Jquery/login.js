@@ -38,11 +38,54 @@ $(document).ready(function () {
             });
         }
         else if (user_type == "Student") {
-            alert("Invalid username/password student")
+          
+            $.ajax({
+
+                url: 'http://localhost:96/loginStudent/',
+                type: 'post',
+                dataType: 'json',
+                data: data,
+                success: function (res, textStatus, xhr) {
+                    console.log(res)
+                    if (res.email < 1) {
+                        alert("Invalid username/password")
+                    }
+                    else {
+                        alert("Successfully Log In");
+                        location.href = ("signup.html");
+                        localStorage.setItem('token', res.token);
+                    }
+                },
+
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log('Error in Operation');
+                }
+            });
         }
 
         else if (user_type == "Teacher") {
-            alert("Invalid username/password teacher")
+            $.ajax({
+
+                url: 'http://localhost:96/loginTeacher/',
+                type: 'post',
+                dataType: 'json',
+                data: data,
+                success: function (res, textStatus, xhr) {
+                    console.log(res)
+                    if (res.email < 1) {
+                        alert("Invalid username/password")
+                    }
+                    else {
+                        alert("Successfully Log In");
+                        location.href = ("signup.html");
+                        localStorage.setItem('token', res.token);
+                    }
+                },
+
+                error: function (xhr, textStatus, errorThrown) {
+                    console.log('Error in Operation');
+                }
+            });
         }
         else {
             alert("Invalid usertype")

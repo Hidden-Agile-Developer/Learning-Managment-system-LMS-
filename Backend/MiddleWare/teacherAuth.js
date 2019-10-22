@@ -1,4 +1,3 @@
-
 const jwt = require("jsonwebtoken")
 const Teach = require('../Model/teacherModel')
 
