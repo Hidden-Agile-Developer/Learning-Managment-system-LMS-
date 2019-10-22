@@ -2,28 +2,28 @@
 $(document).ready(function () {
     let user_image = '';
     $("#profile_image").on('change', function () {
-        let formData = new FormData();
-        let files = $("#profile_image").get(0).files;
-        if (files.length > 0) {
-            formData.append("profile_image", files[0]);
-        }
-        $.ajax({
-            type: 'POST',
-            url: 'http://localhost:96/uploadUserImages/',
-            contentType: false,
-            cache: false,
-            processData: false,
-            data: formData,
-            success: function (data) {
-                var userImage = data.filename;
-
-                alert(userImage);
-            },
-            error: function () {
-                alert("Image upload failed!");
-            }
-        });
-    });
+         let formData = new FormData();
+         let files = $("#profile_image").get(0).files;
+         if (files.length > 0) {
+             formData.append("profile_image", files[0]);
+         }
+         $.ajax({
+             type: 'POST',
+             url: 'http://localhost:96/uploadUserImages/',
+             contentType: false,
+             cache: false,
+             processData: false,
+             data: formData,
+             success: function (data) {
+                 userImage = data.filename;
+                 
+                 alert(userImage);
+             },
+             error: function () {
+                 alert("Image upload failed!");
+             }
+           });
+          });
 
 
 
@@ -48,23 +48,7 @@ $(document).ready(function () {
 
 
 
-    // $("#delete_request").click(function () {
-    //     $.ajax({
-    //         type: 'DELETE',
-    //         url: 'http://localhost:96/deleterequest/' + id,
-
-    //         success: function (data) {
-    //             location.href = "requestuser.html";
-    //             alert("Deleted Successfully");
-    //         },
-    //         error: function () {
-    //             alert("Sorry, you are not logged in.");
-    //         }
-    //     });
-    // });
-
-
-
+  
     $("#btn_user_Approval").click(function () {
 
         var first_name = $("#first_name").val();
@@ -97,7 +81,7 @@ $(document).ready(function () {
         $.ajax({
             url: 'http://localhost:96/addStudent/',
             type: 'post',
-            dataType: 'JSON',
+            dataType: 'json',
             data: data,
             success: function (res, textStatus, xhr) {
                 alert('user registered !!');
@@ -109,6 +93,18 @@ $(document).ready(function () {
 
         
         });
+
+        $.ajax({
+            type: 'DELETE',
+            url: 'http://localhost:96/deleterequest/'+id,
+            success: function(data) {
+                location.href="adminrequest.html";
+                                  
+            },
+            error: function() {
+           
+            }
+          }); 
     }
 
     else if(user_type=="Teacher"){
@@ -127,17 +123,28 @@ $(document).ready(function () {
     $.ajax({
         url: 'http://localhost:96/addTeacher/',
         type: 'post',
-        dataType: 'JSON',
+        dataType: 'json',
         data: data1,
         success: function (res, textStatus, xhr) {
-            alert('user registered !!');
+            alert('Teacher registered !!');
             console.log(res);
         },
         error: function (xhr, textStatus, errorThrown) {
             alert('Error! to register');
         }
 
-    })
+    });
+    $.ajax({
+        type: 'DELETE',
+        url: 'http://localhost:96/deleterequest/'+id,
+        success: function(data) {
+            location.href="adminrequest.html";
+                               
+        },
+        error: function() {
+       
+        }
+      }); 
     }
 
     else{
@@ -149,7 +156,27 @@ $(document).ready(function () {
     });
 
 
-  
+
+
+  $("#btn_user_delete").click(function(){
+    $.ajax({
+        type: 'DELETE',
+        url: 'http://localhost:96/deleterequest/'+id,
+        success: function(data) {
+            location.href="adminrequest.html";
+                               
+        },
+        error: function() {
+       
+        }
+      }); 
+
+
+
+
+
+
+  })
 
 
 

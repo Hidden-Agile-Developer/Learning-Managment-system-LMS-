@@ -1,13 +1,10 @@
 require('./Database/database');
 const userModel=require('./Model/userModel');
 const adminModel=require('./Model/adminModel');
-<<<<<<< HEAD
 const studentModel=require('./Model/studentModel');
 const teacherModel=require("./Model/teacherModel");
 const FacultyModel=require('./Model/FacultyModel');
-=======
 const eventModel=require('./Model/adminEventModel');
->>>>>>> backend1
 const adminAuth=require('./MiddleWare/adminAuth');
 const studentAuth=require('./MiddleWare/studentAuth');
 const teacherAuth=require('./MiddleWare/teacherMiddleware');
@@ -21,29 +18,29 @@ const app=express();
 app.use(cors());
 app.use(express.json());
 app.use(bodyparser.urlencoded({ extended: false }));
+app.use("/images", express.static("images"));
 
 //Upload user profile Image
-
 var storage = multer.diskStorage({
    destination: 'images',
    filename: (req, file, callback) => {
-      let ext = path.extname(file.originalname);
-      callback(null, "user" + Date.now() + ext);
+   let ext = path.extname(file.originalname);
+   callback(null, "user" + Date.now() + ext);
    }
-});
-
-var imageFileFilter = (req, file, cb) => {
+ });
+ 
+ var imageFileFilter = (req, file, cb) => {
    if (!file.originalname.match(/\.(jpg|jpeg|png|gif)$/)) {
-      return cb(new Error('You can upload only image files!'), false);
+   return cb(new Error('You can upload only image files!'), false);
    }
    cb(null, true);
-};
-
-var upload = multer({
-storage: storage,
-fileFilter: imageFileFilter,
-limits: { fileSize: 100000000 }
-});
+ };
+ 
+ var upload = multer({
+   storage: storage,
+   fileFilter: imageFileFilter,
+   limits: { fileSize: 100000000 }
+ });
 
 app.post('/uploadUserImages', upload.single('profile_image'), (req, res) => {
 res.send(req.file)
@@ -73,7 +70,29 @@ app.post("/userRequest", (req, res) => {
     console.log(token);  
    })
 
-<<<<<<< HEAD
+///API for Student login
+app.post('/loginStudent',async function(req, res){
+   const user=req.body.email;
+   const password=req.body.password; 
+   const stud1 = await teacherModel.checkCrediantialsDb(user,password);
+   const token = await  stud1.generateAuthToken();
+   res.json({token});        
+   console.log("en");
+   console.log(token);         
+})
+  
+  
+///API for teacher login
+app.post('/loginTeacher',async function(req, res){
+   const user=req.body.email;
+   const password=req.body.password; 
+   const teach1 = await teacherModel.checkCrediantialsDb(user,password);
+   const token = await  teach1.generateAuthToken();
+   res.json({token});        
+   console.log("en");
+   console.log(token);
+           }) 
+
    //API for view user request
 app.get("/showuserRequest", function (req, res) {   ////Completed
    userModel.find().then(function (userModel) {
@@ -142,7 +161,18 @@ app.post("/addTeacher", (req, res) => {
       console.log('student registered');
    }).catch(function (e) { res.send(e) });
 });
-=======
+
+///API to delete user request///
+app.delete('/deleterequest/:id', function (req, res) {            
+   console.log(req.params.id);
+   userModel.findByIdAndDelete(req.params.id).then(function(){
+   res.send("Successfully Removed");
+   })
+   .catch(function(e){
+   res.send(e);
+    }) ;
+    });
+
  //API for adding Event
 app.post("/addEvent",(req, res) => {
     console.log(req.body);
@@ -153,8 +183,6 @@ app.post("/addEvent",(req, res) => {
         console.log('Event info added');
     }).catch(function(e){res.send(e) });
 });
-
-
 
  //API for viewing all events
  app.get("/showEventDetails",function(req,res){
@@ -201,7 +229,6 @@ app.put('/updateSpecificEvent/:id', function (req, res) {   //update productr
            }) ;
            });
 
->>>>>>> backend1
 
 
  ///Server Port
