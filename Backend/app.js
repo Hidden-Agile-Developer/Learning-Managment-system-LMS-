@@ -261,6 +261,15 @@ res.send(e);
 });
 });
 
+///API to view teacher
+app.get("/ViewTeacher", function(req,res){
+teacherModel.find().then(function(teacherModel){
+res.send(teacherModel);
+}).catch(function(e){
+res.send(e);
+});
+});
+
 
 
  ///Server Port
