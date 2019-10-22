@@ -5,6 +5,7 @@ const studentModel=require('./Model/studentModel');
 const teacherModel=require("./Model/teacherModel");
 const FacultyModel=require('./Model/FacultyModel');
 const eventModel=require('./Model/adminEventModel');
+const sectionModel=require('./Model/sectionModel');
 const adminAuth=require('./MiddleWare/adminAuth');
 const studentAuth=require('./MiddleWare/studentAuth');
 const teacherAuth=require('./MiddleWare/teacherMiddleware');
@@ -228,6 +229,37 @@ app.put('/updateSpecificEvent/:id', function (req, res) {   //update productr
                res.send(e);
            }) ;
            });
+
+
+ ///API to add new section          
+app.post("/AddSection", (req, res) => { 
+console.log(req.body);
+var userData = new sectionModel(req.body); 
+userData.save().then(function(){
+alert("Section Added");
+console.log('section added');     
+}).catch(function(e){res.send(e) });                    
+});
+        
+///API to view section        
+app.get("/ViewSection", function(req,res){
+sectionModel.find().then(function (sectionModel) {
+res.send(sectionModel);
+}).catch(function (e) {
+res.send(e)
+});
+});
+        
+
+///API to delete section
+app.delete('/DeleteSeciton/:id', function (req, res) {                
+console.log(req.params.id);
+sectionModel.findByIdAndDelete(req.params.id).then(function(){
+res.send("Successfully deleted");
+}).catch(function(e){
+res.send(e);
+});
+});
 
 
 
