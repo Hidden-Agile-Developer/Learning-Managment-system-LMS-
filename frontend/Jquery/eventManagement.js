@@ -2,6 +2,8 @@
   //upload event
   $(document).ready(function () {
 
+
+
 //     n =  new Date();
 // y = n.getFullYear();
 // m = n.getMonth() + 1;
@@ -22,10 +24,23 @@ var d = new Date();
     $("#date").append(sysdate);
       $('#btnuploadevent').click(function (e) {
           e.preventDefault();
-    
+         
            eventname = $("#event_name").val();
            happeningdate = $("#happening_date").val();
-          data = {
+
+           if (eventname == '') {
+            $('#event_name').attr('placeholder', 'Please fill event name');
+            $('#event_name').css({ 'border': '2px solid red' });
+            $('#event_name').focus();
+          }
+          else if (!eventname.match('^[A-Za-z. ]{3,30}')) {
+            $('#event_name').attr('placeholder', 'Invalid Input character');
+            $('#event_name').css({ 'border': '2px solid #ff1a1a' });
+            $('#event_name').focus();
+          }
+          
+          else{
+            data = {
               "eventName" : eventname,
               "happeningDate" : happeningdate,
               "uploadedDate":sysdate,
@@ -44,6 +59,8 @@ var d = new Date();
                   console.log('Error in Operation');
               }
           });
+          }
+
       });
 
       
@@ -104,7 +121,9 @@ var d = new Date();
                 
            eventname = $("#event_name").val();
            happeningdate = $("#happening_date").val();
-                
+
+
+            
                   var data = {
                 "eventName" : eventname,
                 "happeningDate" : happeningdate,
