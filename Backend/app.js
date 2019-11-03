@@ -7,6 +7,7 @@ const FacultyModel=require('./Model/FacultyModel');
 const eventModel=require('./Model/adminEventModel');
 const sectionModel=require('./Model/sectionModel');
 const assignmentTechModel=require('./Model/AssignmentTechModel');
+const studyMaterialModel=require('./Model/studyMaterialModel');
 const adminAuth=require('./MiddleWare/adminAuth');
 const studentAuth=require('./MiddleWare/studentAuth');
 const teacherAuth=require('./MiddleWare/teacherMiddleware');
@@ -349,6 +350,44 @@ app.get("/viewAssignmentTeacher/:id", function(req,res){
  ///API To update Assignment --Student
 
  ///API to View Assignment --Teacher
+
+ ///API to add study Material
+ app.post("/addStudyMaterial",  (req, res) => { 
+   console.log(req.body);
+   var userData = new studyMaterialModel(req.body); 
+   userData.save().then(function(){
+   alert("Document uploaded");
+   }).catch(function(e){res.send(e) });                    
+   });
+
+ ///API to delete study Material
+ app.delete('/deleteStudy/:id', function (req, res) {                
+   console.log(req.params.id);
+   studyMaterialModel.findByIdAndDelete(req.params.id).then(function(){
+   res.send("Successfully deleted");
+   }).catch(function(e){
+   res.send(e);
+   }) ;
+   }); 
+
+///API to View Study Material
+app.get("/viewStudyMaterial", function(req,res){
+   studyMaterialModel.find().then(function(studyMaterialModel){
+   res.send(studyMaterialModel);
+   }).catch(function(e){
+   res.send(e);
+   });
+   });
+
+///API to view study material individually
+app.get("/viewStudyMaterial/:id", function(req,res){
+   uid = req.params.id.toString();
+   studyMaterialModel.findById(uid).then(function (studyMaterialModel) {
+   res.send(studyMaterialModel);
+   }).catch(function (e) {
+   res.send(e)
+   });
+   });
 
  ///Server Port
  app.listen(96);
