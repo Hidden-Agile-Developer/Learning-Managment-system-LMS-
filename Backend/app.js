@@ -75,8 +75,8 @@ app.post("/userRequest", (req, res) => {
 app.post('/loginStudent',async function(req, res){
    const user=req.body.email;
    const password=req.body.password; 
-   const stud1 = await teacherModel.checkCrediantialsDb(user,password);
-   const token = await  stud1.generateAuthToken();
+   const student1 = await studentModel.checkCrediantialsDb(user,password);
+   const token = await  student1.generateAuthToken();
    res.json({token});        
    console.log("en");
    console.log(token);         
@@ -87,8 +87,8 @@ app.post('/loginStudent',async function(req, res){
 app.post('/loginTeacher',async function(req, res){
    const user=req.body.email;
    const password=req.body.password; 
-   const teach1 = await teacherModel.checkCrediantialsDb(user,password);
-   const token = await  teach1.generateAuthToken();
+   const admin1 = await adminModel.checkCrediantialsDb(user,password);
+   const token = await  admin1.generateAuthToken();
    res.json({token});        
    console.log("en");
    console.log(token);
@@ -97,21 +97,21 @@ app.post('/loginTeacher',async function(req, res){
    //API for view user request
 app.get("/showuserRequest", function (req, res) {   ////Completed
    userModel.find().then(function (userModel) {
-      res.send(userModel);
+   res.send(userModel);
    }).catch(function (e) {
-      res.send(e);
+   res.send(e);
    });
-  });
+   });
 
   //API to view specific user request in detail
 app.get("/showuserRequest/:id", function (req, res) { 
    uid = req.params.id.toString();
    userModel.findById(uid).then(function (userModel) {
-      res.send(userModel);
+   res.send(userModel);
    }).catch(function (e) {
-      res.send(e)
+   res.send(e)
    });
-});
+   });
 
 ///API Adding the Faculty////
 app.post("/addFaculty", (req, res) => {
@@ -121,9 +121,9 @@ app.post("/addFaculty", (req, res) => {
    alert("New Faculty Added");
    console.log('Faculty Added');
    }).catch(function (e) {
-      res.send(e)
+   res.send(e)
    });
-});
+   });
 
 ///API to view the Faculty
 app.get("/viewFaculty", function (req, res) {   ////Completed
@@ -152,16 +152,16 @@ app.post("/addStudent", (req, res) => {
    alert("student Registered");
    console.log('student registered');
    }).catch(function (e) { res.send(e) });
-});
+   });
 
 app.post("/addTeacher", (req, res) => {
    console.log(req.body);
    var userData = new teacherModel(req.body);
    userData.save().then(function () {
-      alert("student Registered");
-      console.log('student registered');
+   alert("student Registered");
+   console.log('student registered');
    }).catch(function (e) { res.send(e) });
-});
+   });
 
 ///API to delete user request///
 app.delete('/deleterequest/:id', function (req, res) {            
@@ -171,29 +171,29 @@ app.delete('/deleterequest/:id', function (req, res) {
    })
    .catch(function(e){
    res.send(e);
-    }) ;
-    });
+   }) ;
+   });
 
  //API for adding Event
 app.post("/addEvent",(req, res) => {
-    console.log(req.body);
-    var eventData = new eventModel(req.body);
-    eventData.save().then(function(){
-        // res.send('fine');
-        alert("Event Added");
-        console.log('Event info added');
-    }).catch(function(e){res.send(e) });
-});
+   console.log(req.body);
+   var eventData = new eventModel(req.body);
+   eventData.save().then(function(){
+   // res.send('fine');
+   alert("Event Added");
+   console.log('Event info added');
+   }).catch(function(e){res.send(e) });
+   });
 
  //API for viewing all events
- app.get("/showEventDetails",function(req,res){
-  eventModel.find().then(function(eventModel){
-      console.log(eventModel);
-      res.send(eventModel);
-  }).catch(function(e){
-      res.send(e);
-  })
-})
+app.get("/showEventDetails",function(req,res){
+   eventModel.find().then(function(eventModel){
+   console.log(eventModel);
+   res.send(eventModel);
+   }).catch(function(e){
+   res.send(e);
+   })
+   })
 
 //  API for viewing specific events
 app.get('/showSpecificEvent/:id', function (req, res) {    

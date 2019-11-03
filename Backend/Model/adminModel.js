@@ -55,6 +55,5 @@ userSchema.methods.generateAuthToken = async function () {
    }
 
 
-  
 const Admin = mongoose.model('admin', userSchema)
 module.exports = Admin;

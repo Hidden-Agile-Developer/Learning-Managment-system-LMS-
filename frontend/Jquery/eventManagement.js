@@ -72,7 +72,8 @@ var d = new Date();
                        " <button  class='btn btn-danger btn-sm delete' event_id='"+data[index]._id+"'><i class='fa fa-trash'></i> </button></td></tr>");
                        
 
-                    }) // 
+                    })
+                     // // 
                   
         },
         error: function() {
@@ -80,6 +81,25 @@ var d = new Date();
         }
       }); 
 
+
+
+      //////////For Teacher
+      $.ajax({
+        type: 'get',
+        url: 'http://localhost:96/showEventDetails',
+        success: function(data) {
+        $.each(data,function(index){         
+                      
+          $("#teacherEvents").append("<tr style='text-align:center'>"+
+          "<td class='col-xs-6'>" + data[index].eventName+ "</td>"+
+          "<td class='col-xs-3'>" +new Date(data[index].happeningDate).toISOString().split('T')[0]+ "</td>"+
+          "<td class='col-xs-3'>" + new Date(data[index].uploadedDate).toISOString().split('T')[0]+ "</td></tr>");
+          })
+           },
+          error: function() {
+          alert("Sorry, you are not logged in.");
+          }
+          });
 
       // view Specific Event
 

@@ -1,5 +1,4 @@
 const mongoose = require('mongoose');
-
 const jwt = require("jsonwebtoken");
 
 const userSchema = new mongoose.Schema({
@@ -17,7 +16,6 @@ const userSchema = new mongoose.Schema({
     user_type: {
         type: String
     },
-
     email: {
         type: String
     },
@@ -47,24 +45,18 @@ const userSchema = new mongoose.Schema({
 
 })
 
-userSchema.methods.generateAuthToken = async function () {
-    const stud = this
-    const token = jwt.sign({ _id: stud._id.toString() }, 'thisismynewcourse')
-    ///  console.log(token);  
-    stud.tokens = studentModel.tokens.concat({ token: token })
-    await stud.save()
 
+userSchema.methods.generateAuthToken = async function () {   
+    const student = this 
+    const token = jwt.sign({ _id: student._id.toString() }, 'thisismynewcourse')    
+    console.log(token);  
+    student.tokens = student.tokens.concat({ token :token }) 
+    await student.save() 
     return token
-}
-
-
-userSchema.statics.checkCrediantialsDb = async (email, password) => {
-    const stud1 = await Stud.findOne({ email: email, password: password })
-    return stud1;
-}
-
-
-
-const Stud = mongoose.model('student', userSchema)
-
-module.exports = Stud;
+    }
+   userSchema.statics.checkCrediantialsDb = async (email, password) =>{
+   const student1 = await Student.findOne({email : email, password : password})
+   return student1;
+   }
+   const Student = mongoose.model('student', userSchema)
+   module.exports = Student;
