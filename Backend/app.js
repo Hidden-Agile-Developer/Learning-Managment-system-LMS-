@@ -6,6 +6,7 @@ const teacherModel=require("./Model/teacherModel");
 const FacultyModel=require('./Model/FacultyModel');
 const eventModel=require('./Model/adminEventModel');
 const sectionModel=require('./Model/sectionModel');
+const assignmentTechModel=require('./Model/AssignmentTechModel');
 const adminAuth=require('./MiddleWare/adminAuth');
 const studentAuth=require('./MiddleWare/studentAuth');
 const teacherAuth=require('./MiddleWare/teacherMiddleware');
@@ -48,6 +49,22 @@ res.send(req.file)
 console.log(req.file)
 });
 
+
+///API for uploading files and documents
+var storage = multer.diskStorage({
+   destination: "files",
+   filename: function (req, file, callback)
+   {
+   const ext = path.extname(file.originalname);
+   callback(null, "assign" + Date.now() + ext);
+   }
+   });
+
+   var upload1 = multer({ storage: storage });
+   app.post('/uploadAssignment', upload1.single('assignment'), (req, res) => {
+   res.send(req.file)
+   console.log(req.file)
+   });
 
 ///API for sending the request to the user////
 app.post("/userRequest", (req, res) => { 
@@ -279,6 +296,59 @@ app.get("/ViewStudent", function(req,res){
    });
    });
 
+ ///API To add Assignment --Teacher
+app.post("/addTechAssignment",  (req, res) => { 
+   console.log(req.body);
+   var userData = new assignmentTechModel(req.body); 
+   userData.save().then(function(){
+   alert("Document uploaded");
+   }).catch(function(e){res.send(e) });                    
+   });
+ 
+ ///API To update Assignment --Teacher
+ app.put('/updateAssignment/:id', function (req, res) {  
+   uid = req.params.id.toString();
+   console.log(uid);
+   console.log(req.body);
+   assignmentTechModel.findByIdAndUpdate(uid,req.body,{new: true}, (err,assignmentTechModel) => {
+   res.send(assignmentTechModel);
+   });
+   });
+
+ ///API to Delete Assignment --Teacher
+app.delete('/deleteAssignment/:id', function (req, res) {                
+   console.log(req.params.id);
+   assignmentTechModel.findByIdAndDelete(req.params.id).then(function(){
+   res.send("Successfully deleted");
+   }).catch(function(e){
+   res.send(e);
+   }) ;
+   }); 
+
+ ///API to View Assignment --Teacher
+ app.get("/viewAssignmentTeacher", function(req,res){
+   assignmentTechModel.find().then(function(assignmentTechModel){
+   res.send(assignmentTechModel);
+   }).catch(function(e){
+   res.send(e);
+   });
+   });
+
+///API to View Individual Assignment--Teacher
+app.get("/viewAssignmentTeacher/:id", function(req,res){
+   uid = req.params.id.toString();
+   assignmentTechModel.findById(uid).then(function (assignmentTechModel) {
+   res.send(assignmentTechModel);
+   }).catch(function (e) {
+   res.send(e)
+   });
+   }); 
+
+ ///API To add Assignment --Student
+ 
+ ///API To update Assignment --Student
+
+ ///API to View Assignment --Teacher
 
  ///Server Port
  app.listen(96);
