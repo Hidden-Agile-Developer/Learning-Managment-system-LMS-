@@ -1,4 +1,31 @@
 $(document).ready(function () {
+    update_teacher_profile();
+
+    let user_image = '';
+    $("#profile_image").on('change', function () {
+         let formData = new FormData();
+         let files = $("#profile_image").get(0).files;
+         if (files.length > 0) {
+             formData.append("profile_image", files[0]);
+         }
+         $.ajax({
+          type: 'POST',
+          url: 'http://localhost:96/uploadUserImages/',
+          contentType: false,
+          cache: false,
+          processData: false,
+          data: formData,
+          success: function (data) {
+          userImage = data.filename;
+                 
+          alert(userImage);
+          },
+          error: function () {
+          alert("Image upload failed!");
+          }
+        });
+    });
+
     $.ajax({
              
 type: 'get',
@@ -24,4 +51,69 @@ alert("Sorry, you are not logged in.");
 }
 });
 
+function update_teacher_profile(){
+  $("#update_teacher_profile").click(function(){
+  var id2=$("#teacher_id").val();
+  console.log(id2);
+  first_name=$("#first_name").val();
+  last_name=$("#last_name").val();
+  gender=$("#gender").val();
+  email=$("#email").val();
+  contact=$("#contact").val();
+  password=$("#password").val();
+   
+          
+  data={
+  "first_name":first_name,
+  "last_name":last_name,
+  "gender":gender,
+  "email":email,
+  "contact":contact,
+  "password":password
+  }
+  
+  $.ajax({
+  url:'http://localhost:96/updateTeacher/' + id2,
+  type:'PUT',
+  dataType:'json',
+  data:data,
+  success:function(res, textStatus, xhr){
+  location.href=("teachprofile.html");
+  alert('Teacher updated!!');     
+  console.log(res);          
+       },
+  error:function(xhr, textStatus, errorThrown){
+  alert('Error! to update Teacher');
+  }
+            
+  });
+  });
+    
+  $("#update_image_teacher").click(function(){
+  var id1=$("#teacher_id").val();
+  data={
+  "profile_image":userImage,
+  }
+      
+  $.ajax({
+  url:'http://localhost:96/updateTeacher/' + id1,
+  type:'PUT',
+  dataType:'json',
+  data:data,
+  success:function(res, textStatus, xhr){
+  alert('Profile image updated!!');    
+  location.href="teacherprofile.html"; 
+  console.log(res);          
+  }
+             
+       });
+       });
+       
+
+
+}
+
+function delete_teacher(){
+
+}
 });

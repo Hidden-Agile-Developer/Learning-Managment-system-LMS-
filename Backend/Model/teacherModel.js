@@ -30,23 +30,28 @@ const userSchema = new mongoose.Schema({
     },
     profile_image: {
         type: String
-    }
+    },
+    tokens:[{
+     token:{
+     type:String,
+     required:true,
+        }
+    }]
 
 
 })
 
-userSchema.methods.generateAuthToken = async function () {
-    const teach = this
-    const token = jwt.sign({ _id: teach._id.toString() }, 'thisismynewcourse')
-    ///  console.log(token);  
-    teach.tokens = teach.tokens.concat({ token: token })
-    await teach.save()
+userSchema.methods.generateAuthToken = async function () {   
+    const teacher = this 
+    const token = jwt.sign({ _id: teacher._id.toString() }, 'thisismynewcourse')    
+    console.log(token);  
+    teacher.tokens = teacher.tokens.concat({ token :token }) 
+    await teacher.save() 
     return token
-}
-userSchema.statics.checkCrediantialsDb = async (email, password) => {
-    const teach1 = await Teach.findOne({ email: email, password: password })
-    return teach1;
-}
-const Teach = mongoose.model('teacher', userSchema)
-
-module.exports = Teach;
+    }
+   userSchema.statics.checkCrediantialsDb = async (email, password) =>{
+   const teacher1 = await Teacher.findOne({email : email, password : password})
+   return teacher1;
+   }
+   const Teacher = mongoose.model('teacher', userSchema)
+   module.exports = Teacher;

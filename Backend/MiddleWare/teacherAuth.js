@@ -1,18 +1,18 @@
 const jwt = require("jsonwebtoken")
-const Teach = require('../Model/teacherModel')
+const Teacher = require('../Model/teacherModel')
 
 const authteach = async (req, res, next) => {
     try {
         const token = req.header('Authorization').replace('Bearer ', '')
         const decoded = jwt.verify(token, 'thisismynewcourse')
-        const teach = await Teach.findOne({ _id: decoded._id, 'tokens.token': token })
+        const teacher = await Teacher.findOne({ _id: decoded._id, 'tokens.token': token })
 
-        if (!teach) {
+        if (!teacher) {
             throw new Error()
         }
 
         req.token = token
-        req.teach = teach
+        req.teacher = teacher
         next()
     } catch (e) {
         res.status(401).send({ error: 'Pleaseuthenticate.' })

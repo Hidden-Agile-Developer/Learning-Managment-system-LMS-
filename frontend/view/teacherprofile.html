@@ -13,6 +13,9 @@
   <link rel="stylesheet" href="../css/style.css">
   <script src="../Jquery/request.js"></script>
   <script src="../Jquery/login.js"></script>
+  <script src="../Jquery/TeacherEvents.js"></script>
+  <script src="../Jquery/teacher.js"></script>
+  <script src="../Jquery/imageload.js"></script>
  <script src="../Jquery/jquery-3.3.1.min.js"></script>
 <style>
 
@@ -28,8 +31,8 @@
       <li><a href="admindashboard.html" class="webname" style="color: white;">Learning Management System</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-        <li><p id="userName" style="padding-top: 25px; padding-right: 20px;"></p></li>
-        <li> <img src="../Image/userimage.png" alt="Smiley face" height="65" width="50" id="userImage"></li>
+            <li><p id="userName"  style="padding-top: 25px; padding-right: 20px;"></p></li>
+            <li> <p height="65" width="50" id="userImage"></p></li>
       <li><a href="index.html" style="margin: 9px; color: white;" class="aaa"> Sign Out &nbsp; <i class="fa fa-outdent" ></i></a></li>
     </ul>
   </div>
@@ -38,12 +41,10 @@
 <div class="container-fluid" style="height: 7vh;"></div>
 
 <div id="mySidenav" class="sidenav" >
-  <a href="teacheradmin.html" id="teacher">Teacher &nbsp;&nbsp;&nbsp;<i class="fa fa-text-width"></i></a>
-  <a href="studentadmin.html" id="student">Student &nbsp;&nbsp;&nbsp;<i class="fa fa-strikethrough"></i></a>
-  <a href="classadmin.html" id="class">Classes &nbsp;&nbsp;&nbsp;<i class="fa fa-contao"></i></a>
-  <a href="event.html" id="event">Events &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-etsy"></i></a>
-  <a href="adminrequest.html" id="request">Request &nbsp;&nbsp;&nbsp;<i class="fa fa-registered"></i></a>
-  <a href="adminprofile.html" id="profile">Profile &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-product-hunt"></i></a>
+        <a href="teacherassignment.html" id="teacher">Assignment &nbsp;&nbsp;&nbsp;<i class="fa fa-book"></i></a>
+        <a href="studentassignment.html" id="student">Student &nbsp;&nbsp;&nbsp;<i class="fa fa-strikethrough"></i></a>
+        <a href="teacherStudymaterial.html" id="class">Material &nbsp;&nbsp;&nbsp;<i class="fa fa-laptop"></i></a>
+        <a href="teacherprofile.html" id="event">Profile &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-product-hunt"></i></a>
 </div>
 
 <div  class="container" style="margin-left:170px;margin-top: 20px;">
@@ -52,8 +53,31 @@
 
     <div class="jumbotron">
       
-      <form>
-        <div class="input-group">
+  
+            <form >
+                    <input type="text" id="teacher_id"  hidden>    
+                    <a class="btn btn-primary" data-toggle="modal" data-target="#update_image">Update profile image</a>
+                          <div class="modal fade" role="dialog" id="update_image">
+                              <div class="modal-dialog">
+                                  <div class="modal-content">
+                                      <div class="modal-header">
+                                          <h3 class="modal-title">Update Profile picture</h3>
+                                      </div>
+                                      <div class="modal-body">
+                                        <form enctype="multipart/FormData">
+                                          <input type='file' onchange="readURL(this);" class="form-control" id="profile_image" />
+                                          <img id="user_image"  src="../image/userimage.png" width="150px" height="150px">
+                                    </form>
+                                <div class="modal-footer">
+                              <a id="update_image_teacher" class="btn btn-success">Update</a>
+                                  </div>
+            
+                                  </div>
+                              </div>
+                          </div>
+                 </div>
+
+                <div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-user"></i></span>
                 <input type="text" name="first_name" id="first_name" placeholder="First Name" class="form-control"/>
                   </div></p>
@@ -72,45 +96,7 @@
                         <i class="fa fa-transgender-alt"></i>&nbsp;<input type="radio" id="gender" name="gender" value="other">Other</p>   
                        </div>
                   </p>
-                  <p>
 
-                      <div class="input-group">
-                    <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-                    <select name="subject" value="subject" id="subject" class="form-control selectpicker">
-                    <option value="">Enrolled Course</option>
-                             </select>
-                         </div>
-                   </p>
-          
-                   <p>
-                   <div class="input-group">
-                          <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-                          <select name="semister" id="semister" class="form-control selectpicker">
-                          <option value=""  >Enrolled Semister</option>
-                          <option>I</option>
-                          <option>II</option>
-                          <option >III</option>
-                          <option >IV</option>
-                          <option >V</option>
-                          <option >VI</option>
-                          <option >VII</option>
-                          <option >VIII</option>
-                  </select>
-                  </div>
-              </p>
-          
-              <div class="input-group">
-                  <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-                  <select name="section" id="section" class="form-control selectpicker">
-                  <option value=""  >Section</option>
-                  <option>A</option>
-                  <option>B</option>
-                  <option >C</option>
-                  <option >D</option>
-                 </select>
-          </div>
-          </p>
-          
 
                <p><div class="input-group">
                <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
@@ -123,17 +109,15 @@
                </div></p>
 
                <p><div class="input-group">
-              <span class="input-group-addon"><i class="fa fa-key"></i></span>
-              <input type="password" name="password" id="password" placeholder="Password" class="form-control"/>
-              </div></p>
-
-              <button type="submit" data-toggle="modal" data-target="#update_image" class="btn btn-primary" style="padding: 10px;">Upload Image &nbsp;&nbsp; <i class="fa fa-edit"></i></button>
-
-              <button type="submit" id="update_student" class="btn btn-primary" style="float: right; padding: 10px;">Update &nbsp;&nbsp; <i class="fa fa-edit"></i></button>
-      </form>
-
+                    <span class="input-group-addon"><i class="fa fa-key"></i></span>
+                    <input type="password" name="password" id="password" placeholder="Password" class="form-control"/>
+                    </div></p>
+    
+    
+                                       
+          <button type="submit" id="update_teacher_profile" class="btn btn-success">update</button>                        
+       </form>
     </div>
-
   
 </div>
 

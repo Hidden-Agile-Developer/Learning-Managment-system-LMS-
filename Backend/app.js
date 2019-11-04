@@ -10,7 +10,7 @@ const assignmentTechModel=require('./Model/AssignmentTechModel');
 const studyMaterialModel=require('./Model/studyMaterialModel');
 const adminAuth=require('./MiddleWare/adminAuth');
 const studentAuth=require('./MiddleWare/studentAuth');
-const teacherAuth=require('./MiddleWare/teacherMiddleware');
+const teacherAuth=require('./MiddleWare/teacherAuth');
 const express=require('express');
 const bodyparser=require('body-parser');
 const cors=require('cors');
@@ -105,8 +105,8 @@ app.post('/loginStudent',async function(req, res){
 app.post('/loginTeacher',async function(req, res){
    const user=req.body.email;
    const password=req.body.password; 
-   const admin1 = await adminModel.checkCrediantialsDb(user,password);
-   const token = await  admin1.generateAuthToken();
+   const teacher1 = await teacherModel.checkCrediantialsDb(user,password);
+   const token = await  teacher1.generateAuthToken();
    res.json({token});        
    console.log("en");
    console.log(token);
@@ -206,7 +206,6 @@ app.post("/addEvent",(req, res) => {
  //API for viewing all events
 app.get("/showEventDetails",function(req,res){
    eventModel.find().then(function(eventModel){
-   console.log(eventModel);
    res.send(eventModel);
    }).catch(function(e){
    res.send(e);
@@ -223,30 +222,27 @@ app.get('/showSpecificEvent/:id', function (req, res) {
   });
 });
 
-// API for updating specific events
+///API for updating specific events
 app.put('/updateSpecificEvent/:id', function (req, res) {   //update productr
   eid = req.params.id.toString();
   console.log(eid);
   console.log(req.body);
-
   eventModel.findByIdAndUpdate(eid,req.body,{new: true}, (err,eventModel) => {
-      // Handle any possible database errors
-      res.send(eventModel);
-      });
+  res.send(eventModel);
+  });
   });
 
 
   
-        // API for deleting specific events
-        app.delete('/deleteSpecificEvent/:id', function (req, res) {    
-            
-          console.log(req.params.id);
-           eventModel.findByIdAndDelete(req.params.id).then(function(){
-               res.send("Successfully deleted");
-           }).catch(function(e){
-               res.send(e);
-           }) ;
-           });
+// API for deleting specific events
+app.delete('/deleteSpecificEvent/:id', function (req, res) {                
+   console.log(req.params.id);
+   eventModel.findByIdAndDelete(req.params.id).then(function(){
+   res.send("Successfully deleted");
+   }).catch(function(e){
+   res.send(e);
+   }) ;
+   });
 
 
  ///API to add new section          
@@ -367,7 +363,7 @@ app.get("/viewAssignmentTeacher/:id", function(req,res){
    res.send("Successfully deleted");
    }).catch(function(e){
    res.send(e);
-   }) ;
+   });
    }); 
 
 ///API to View Study Material
@@ -389,5 +385,34 @@ app.get("/viewStudyMaterial/:id", function(req,res){
    });
    });
 
+///API to view admin
+app.get('/viewDataAdmin',adminAuth, function(req, res){
+   res.send(req.admin);
+   console.log(req.body.first_name);
+   console.log(req.admin);
+})
+
+app.get('/viewDataStudent',studentAuth, function(req, res){
+   res.send(req.student);
+   console.log(req.body.first_name);
+   console.log(req.student);
+})
+
+
+app.get('/viewDataTeacher',teacherAuth, function(req, res){
+   res.send(req.teacher);
+   console.log(req.body.first_name);
+   console.log(req.teacher);
+});
+
+app.put('/updateTeacher/:id', function (req, res) {
+   uid = req.params.id.toString();
+   console.log(uid);
+   console.log(req.body);
+   teacherModel.findByIdAndUpdate(uid,req.body,{new: true}, (err,teacherModel) => {
+   res.send(teacherModel);
+       });
+   });
+   
  ///Server Port
  app.listen(96);

@@ -4,7 +4,6 @@ $(document).ready(function () {
         email = $("#user_email").val();
         password = $("#user_password").val();
         user_type = $("#user_type").val();
-
         console.log(email);
         console.log(password);
 
@@ -51,7 +50,7 @@ $(document).ready(function () {
                 }
                 else {
                 alert("Successfully Log In");
-                location.href = ("signup.html");
+                location.href = ("studentDashboard.html");
                 localStorage.setItem('token', res.token);
                 }
                 },
