@@ -11,7 +11,10 @@
   <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" 
   rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   <link rel="stylesheet" href="../css/style.css">
-  <script src="../Jquery/TeacherEvents.js"></script>
+  <script src="../Jquery/studentEvents.js"></script>
+  <script src="../Jquery/login.js"></script>
+  <script src="../Jquery//studentassignment.js"></script>
+  <script src="../Jquery/faculty.js"></script>
  <script src="../Jquery/jquery-3.3.1.min.js"></script>
 <style>
 
@@ -27,8 +30,8 @@
       <li><a href="#" class="webname" style="color: white;">Learning Management System</a></li>
     </ul>
     <ul class="nav navbar-nav navbar-right">
-        <li><p id="userName"  style="padding-top: 25px; padding-right: 20px;"></p></li>
-        <li> <p height="65" width="50" id="userImage"></p></li>
+        <li><p id="userName" style="padding-top: 25px; padding-right: 20px;"></p></li>
+        <li> <img src="../Image/userimage.png" alt="Smiley face" height="65" width="50" id="userImage"></li>
       <li><a href="index.html" style="margin: 9px; color: white;" class="aaa"> Sign Out &nbsp; <i class="fa fa-outdent" ></i></a></li>
     </ul>
   </div>
@@ -37,8 +40,8 @@
 <div class="container-fluid" style="height: 7vh;"></div>
 
 <div id="mySidenav" class="sidenav" >
-  <a href="teacherassignment.html" id="teacher">Assignment &nbsp;&nbsp;&nbsp;<i class="fa fa-book"></i></a>
-  <a href="teacherStudentassign.html" id="student">Student &nbsp;&nbsp;&nbsp;<i class="fa fa-strikethrough"></i></a>
+  <a href="teacherdashboard.html" id="teacher">Event &nbsp;&nbsp;&nbsp;<i class="fa fa-book"></i></a>
+  <a href="teacherassignment.html" id="student">Student &nbsp;&nbsp;&nbsp;<i class="fa fa-strikethrough"></i></a>
   <a href="teacherStudymaterial.html" id="class">Material &nbsp;&nbsp;&nbsp;<i class="fa fa-laptop"></i></a>
   <a href="teacherprofile.html" id="event">Profile &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-product-hunt"></i></a>
 
@@ -53,33 +56,63 @@
       <h1  class="signup text-center">Teacher Dashboard</h1>
       
       <div class="container-fluid">
-        <!-- first row -->
-        <div class="row">
-          <table class="table table-hover table-fixed" >
-            <thead>
-              <tr>
-               <th class="col-xs-6">Event</th>
-               <th class="col-xs-3">Event Date </th>
-               <th class="col-xs-3">Upload Date</th>
-               
-               <!-- <th class="col-xs-1">Delete</th> -->
-                         
-              </tr>
-            </thead>
-               <tbody id="teacherEvents">
-               </tbody>
-           </table>
-            
-          </div>
-        </div>
-        <!-- end of first row -->
-        <!-- second row -->
-        <div class="row">
       
-            
-          </div>
+        <div class="modal fade" role="dialog" id="add_assignment">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h3 class="modal-title">Add new Assignment</h3>
+                    </div>
+                    <div class="modal-body">
+                        <form  enctype="multipart/FormData">
+                          <div class="form-group">
+                          <label for="usr">Date</label>
+                          <input type="text" class="form-control" id="assignment_date" name="upload_date">
+                          </div>
+                          <input type="text" id="email" hidden>
+      
+                         <div class="form-group">
+                          <label for="usr">Upload Document:</label>
+                          <input type="file" class="form-control" id="assignment" name="assignment_file" multiple>
+                          </div>
+      
+                          <div class="form-group">
+                          <label for="usr">Subject Code</label>
+                          <input type="text" class="form-control" id="assignment_code" name="assignment_code">
+                          </div>
+      
+
+                          <div class="form-group">
+                          <label for="comment">Comment:</label>
+                          <textarea class="form-control" rows="5" id="comment"  name="comment"></textarea>
+                        </div>
+      
+                           <div class="form-group">
+                              <a class="btn btn-success" id="assignment_upload">SUBMIT</a>
+                            </div>
+                            </form>             
+
+                </div>
+            </div>
         </div>
-        <!-- end of second row -->
+</div>
+
+
+
+ <table class="table table-hover table-fixed">
+    <thead>
+        <tr>
+        <th class="col-xs-3">Assignment</th>
+        <th class="col-xs-2">CODE</th>
+        <th class="col-xs-3">Comment</th>
+        <th class="col-xs-2">Uploaded Date</th>
+        <th class="col-xs-2">Delete</th>
+        </tr>
+    </thead>
+    <tbody id="table_assignment_teacher">               
+   </tbody>
+  </table>
+        </div>
       </div>
     </div>
     

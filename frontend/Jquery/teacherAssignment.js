@@ -75,7 +75,7 @@ $.ajax({
     success: function(data) {
 $.each(data,function(index){
     $("#table_assignment").append("<tr style'text-align:center'>"+
-    "<td class='col-xs-2'>" +"<a href='http://localhost:94/files/"+data[index].assignment+"' download >"+data[index].assignment+"</a></td>"+
+    "<td class='col-xs-2'>" +"<a href='http://localhost:96/files/"+data[index].assignment+"' download >"+data[index].assignment+"</a></td>"+
     "<td class='col-xs-1'>" + data[index].assignment_code +"</td>"+
     "<td class='col-xs-3'>" + data[index].comment +"</td>"+
     "<td class='col-xs-2'>" + data[index].assignment_date + "</td>"+
@@ -89,7 +89,7 @@ $.each(data,function(index){
             
 $.each(data,function(index){
     $("#table_assignment_student").append("<tr style'text-align:center'>"+
-    "<td class='col-xs-2'>" +"<a href='http://localhost:94/files/"+data[index].assignment+"' download >"+data[index].assignment+"</a></td>"+
+    "<td class='col-xs-2'>" +"<a href='http://localhost:96/files/"+data[index].assignment+"' download >"+data[index].assignment+"</a></td>"+
     "<td class='col-xs-1'>" + data[index].assignment_code +"</td>"+
     "<td class='col-xs-3'>" + data[index].comment +"</td>"+
     "<td class='col-xs-2'>" + data[index].assignment_date + "</td>"+

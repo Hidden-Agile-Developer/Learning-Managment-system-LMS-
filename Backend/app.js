@@ -7,6 +7,7 @@ const FacultyModel=require('./Model/FacultyModel');
 const eventModel=require('./Model/adminEventModel');
 const sectionModel=require('./Model/sectionModel');
 const assignmentTechModel=require('./Model/AssignmentTechModel');
+const assignmentStudModel=require('./Model/AssignmentStudModel');
 const studyMaterialModel=require('./Model/studyMaterialModel');
 const adminAuth=require('./MiddleWare/adminAuth');
 const studentAuth=require('./MiddleWare/studentAuth');
@@ -420,6 +421,31 @@ app.put('/updateStudent/:id', function (req, res) {   //update student
    console.log(req.body);
    studentModel.findByIdAndUpdate(uid,req.body,{new: true}, (err,studentModel) => {
    res.send(studentModel);
+   });
+   });
+   
+app.post("/addAssignment", (req, res) => { 
+   console.log(req.body);
+   var userData = new assignmentStudModel(req.body); 
+   userData.save().then(function(){
+   alert("Assignment uploaded");
+   }).catch(function(e){res.send(e) });                    
+});
+  
+app.get("/viewAssignment", function(req,res){
+   assignmentStudModel.find().then(function(assignmentStudModel){
+   res.send(assignmentStudModel);
+   }).catch(function(e){
+   res.send(e);
+   });
+  });   
+
+  app.delete('/deleteStudassign/:id', function (req, res) {
+   console.log(req.params.id);
+   assignmentStudModel.findByIdAndDelete(req.params.id).then(function () {
+   res.send("Successfully deleted");
+   }).catch(function (e) {
+   res.send(e);
    });
    });   
 
