@@ -1,4 +1,33 @@
 $(document).ready(function () {
+   
+  update_student_profile();
+
+  let user_image = '';
+  $("#profile_image").on('change', function () {
+       let formData = new FormData();
+       let files = $("#profile_image").get(0).files;
+       if (files.length > 0) {
+           formData.append("profile_image", files[0]);
+       }
+       $.ajax({
+        type: 'POST',
+        url: 'http://localhost:96/uploadUserImages/',
+        contentType: false,
+        cache: false,
+        processData: false,
+        data: formData,
+        success: function (data) {
+        userImage = data.filename;
+               
+        alert(userImage);
+        },
+        error: function () {
+        alert("Image upload failed!");
+        }
+      });
+  });
+
+
 $.ajax({
 
         type: 'get',
@@ -25,5 +54,72 @@ $.ajax({
           alert("Sorry, you are not logged in.");
         }
       });
+
+function update_student_profile(){
+  $("#update_student_profile").click(function(){
+  var id2=$("#student_id").val();
+  first_name=$("#first_name").val();
+  last_name=$("#last_name").val();
+  gender=$("#gender").val();
+  subject=$("#subject").val();
+  semister=$("#semister").val();
+  section=$("#section").val();
+  email=$("#email").val();
+  contact=$("#contact").val();
+  password=$("#password").val();
+     
+  data={
+ "first_name":first_name,
+ "last_name":last_name,
+ "gender":gender,
+ "subject":subject,
+ "semister":semister,
+ "section":section,
+ "email":email,
+ "contact":contact,
+ "password":password,
+}
+
+ $.ajax({
+ url:'http://localhost:96/updateStudent/' + id2,
+ type:'PUT',
+ dataType:'json',
+ data:data,
+ success:function(res, textStatus, xhr){
+   location.href=("studentprofile.html");
+ alert('Student updated!!');     
+ console.log(res);          
+  },
+ error:function(xhr, textStatus, errorThrown){
+ alert('Error! to update Student');
+  }
+       
+ });
+ });
+
+  $("#update_image_student").click(function(){
+   var id1=$("#student_id").val();
+   data={
+  "profile_image":userImage,
+ }
+ 
+  $.ajax({
+  url:'http://localhost:96/updateStudent/' + id1,
+  type:'PUT',
+  dataType:'json',
+  data:data,
+  success:function(res, textStatus, xhr){
+  alert('Profile image updated!!');    
+  location.href="studentprofile.html"; 
+  console.log(res);          
+   },
+  error:function(xhr, textStatus, errorThrown){
+  alert('Error! to update Student');
+   }
+        
+  });
+  });
+
+}      
 
 });

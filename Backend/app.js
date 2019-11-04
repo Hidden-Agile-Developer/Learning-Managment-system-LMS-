@@ -413,6 +413,16 @@ app.put('/updateTeacher/:id', function (req, res) {
    res.send(teacherModel);
        });
    });
+
+app.put('/updateStudent/:id', function (req, res) {   //update student
+   uid = req.params.id.toString();
+   console.log(uid);
+   console.log(req.body);
+   studentModel.findByIdAndUpdate(uid,req.body,{new: true}, (err,studentModel) => {
+   res.send(studentModel);
+   });
+   });   
+
    
  ///Server Port
  app.listen(96);

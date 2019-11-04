@@ -21,6 +21,10 @@ $(document).ready(function(){
               $("#contact").val(data.contact);
               $("#password").val(data.password);
               $("#teacher_id").val(data._id);
+              $("#semister").val(data.semister);
+              $("#subject").val(data.subject);
+              $("#section").val(data.section);
+              $("#student_id").val(data._id);
               console.log(data);      
                                           
             },
