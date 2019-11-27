@@ -11,8 +11,9 @@
   <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" 
   rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
   <link rel="stylesheet" href="../css/style.css">
-  <script src="../Jquery/studentEvents.js"></script>
+  <script src="../Jquery/admincreation.js"></script>
   <script src="../Jquery/student.js"></script>
+  <script src="../Jquery/faculty.js"></script>
   <script src="../Jquery/imageload.js"></script>
  <script src="../Jquery/jquery-3.3.1.min.js"></script>
 <style>
@@ -39,35 +40,41 @@
 <div class="container-fluid" style="height: 7vh;"></div>
 
 <div id="mySidenav" class="sidenav" >
-        <a href="studentassignment.html" id="teacher">My work &nbsp;&nbsp;&nbsp;<i class="fa fa-book"></i></a>
-        <a href="newassignment.html" id="student">Student &nbsp;&nbsp;&nbsp;<i class="fa fa-strikethrough"></i></a>
-        <a href="studentstudymaterial.html" id="class">Material &nbsp;&nbsp;&nbsp;<i class="fa fa-laptop"></i></a>
-        <a href="studentDashboard.html" id="event">event &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-product-hunt"></i></a>
+        <a href="teacheradmin.html" id="teacher">Teacher &nbsp;&nbsp;&nbsp;<i class="fa fa-text-width"></i></a>
+        <a href="studentadmin.html" id="student">Student &nbsp;&nbsp;&nbsp;<i class="fa fa-strikethrough"></i></a>
+        <a href="classadmin.html" id="class">Classes &nbsp;&nbsp;&nbsp;<i class="fa fa-contao"></i></a>
+        <a href="event.html" id="event">Events &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-etsy"></i></a>
+        <a href="adminrequest.html" id="request">Request &nbsp;&nbsp;&nbsp;<i class="fa fa-registered"></i></a>
+        <a href="adminprofile.html" id="profile">Profile &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<i class="fa fa-product-hunt"></i></a>
+      
 </div>
 
 <div  class="container" style="margin-left:170px;margin-top: 20px;">
-
+        <div>
+        <p id="ram" style="width: 65px; height: 65px;"></p>
+        </div>  
     <h1  class="signup text-center" style="font-family: times;padding: 10px;background: #2196F3;color: whitesmoke;">Profile</h1>
 
-    <div class="jumbotron">      
+    <div class="jumbotron">    
+        
        <form enctype="multipart/FormData">
         <a class="btn btn-primary" data-toggle="modal" data-target="#update_image">Update profile image</a>
-           <div class="modal fade" role="dialog" id="update_image">
-             <div class="modal-dialog">
-             <div class="modal-content">
-             <div class="modal-header">
-        <h3 class="modal-title">Update Profile picture</h3>
-           </div>
-              <div class="modal-body">
-               <form enctype="multipart/FormData">
-               <input type='file' onchange="readURL(this);" class="form-control" id="profile_image"/>
-            <img id="user_image"  class="new_image" src="../image/userimage.png" width="200px" height="150px">
-      </form>
-          <div class="modal-footer">
-             <a id="update_image_student" class="btn btn-success">Update</a>
-         </div>
+          <div class="modal fade" role="dialog" id="update_image">
+          <div class="modal-dialog">
+          <div class="modal-content">
+          <div class="modal-header">
+          <h3 class="modal-title">Update Profile picture</h3>
+          </div>
+         <div class="modal-body">
+          <form enctype="multipart/FormData">
+          <input type='file' onchange="readURL(this);" class="form-control" id="profile_image"/>
+          <img id="user_image"  class="new_image" src="../image/userimage.png" width="200px" height="150px">
+         </form>
+           <div class="modal-footer">
+           <a id="update_image" class="btn btn-success">Update</a>
+          </div>
   
-                        </div>
+         </div>
                     </div>
                 </div>
        </div>
@@ -97,26 +104,41 @@
   
                         <div class="input-group">
                       <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-                      <input type="text" name="subject" value="subject" id="subject" class="form-control selectpicker" readonly>
-                      
+                      <select name="subject" value="subject" id="subject" class="form-control selectpicker">
+                      <option value="">Enrolled Course</option>
+                               </select>
                            </div>
                      </p>
             
                      <p>
                      <div class="input-group">
                             <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-                            <input type="text" name="semister" id="semister" class="form-control selectpicker" readonly>
-                          
+                            <select name="semister" id="semister" class="form-control selectpicker">
+                            <option value=""  >Enrolled Semister</option>
+                            <option>I</option>
+                            <option>II</option>
+                            <option >III</option>
+                            <option >IV</option>
+                            <option >V</option>
+                            <option >VI</option>
+                            <option >VII</option>
+                            <option >VIII</option>
+                    </select>
                     </div>
                 </p>
             
                 <div class="input-group">
                     <span class="input-group-addon"><i class="glyphicon glyphicon-list"></i></span>
-                    <input type="text" name="section" id="section" class="form-control selectpicker" readonly>
-                   
+                    <select name="section" id="section" class="form-control selectpicker">
+                    <option value=""  >Section</option>
+                    <option>A</option>
+                    <option>B</option>
+                    <option >C</option>
+                    <option >D</option>
+                   </select>
             </div>
             </p>
-            <input type="text" id="student_id" hidden>
+            
   
                  <p><div class="input-group">
                  <span class="input-group-addon"><i class="fa fa-envelope-o"></i></span>
@@ -130,14 +152,16 @@
   
                  <p><div class="input-group">
                 <span class="input-group-addon"><i class="fa fa-key"></i></span>
-                <input type="password" name="password" id="password" placeholder="Password" class="form-control"/>
+                <input type="password" name="password" id="password" placeholder="Password" class="form-control" readonly/>
                 </div></p>
       
       
                                          
-            <button type="submit" id="update_student_profile" class="btn btn-success">update</button>
+            <button type="submit" id="update_student" class="btn btn-success">update</button>
                                  
                               </form>
+           
+  
     </div>
   
 </div>
@@ -168,23 +192,6 @@
 </footer>
 </div>
 
-<!-- update image modal -->
-<div class="modal fade" role="dialog" id="update_image">
-                  <div class="modal-dialog">
-                      <div class="modal-content">
-                          <div class="modal-header">
-                              <h3 class="modal-title">Update Profile picture</h3>
-                          </div>
-                          <div class="modal-body">
-                            <form enctype="multipart/FormData">
-                              <input type='file' onchange="readURL(this);" class="form-control" id="profile_image"/>
-                              <img id="user_image"  class="new_image" src="../image/userimage.png" width="200px" height="150px">
-                        </form>
-                    <div class="modal-footer">
-                  <Button id="update_image" class="btn btn-success">Update</a>
-                      </div>
-
-                      </div>
 
 </body>
 <script type="text/javascript">
@@ -193,4 +200,3 @@
 new WOW().init();
 </script>
 
-</html>
