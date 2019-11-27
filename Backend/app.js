@@ -23,6 +23,7 @@ app.use(cors());
 app.use(express.json());
 app.use(bodyparser.urlencoded({ extended: false }));
 app.use("/images", express.static("images"));
+app.use("/files", express.static("files"));
 
 //Upload user profile Image
 var storage = multer.diskStorage({
@@ -449,6 +450,24 @@ app.get("/viewAssignment", function(req,res){
    });
    });   
 
+ app.get("/viewStudent/:id", function(req,res){
+   uid = req.params.id.toString();
+   studentModel.findById(uid).then(function (studentModel) {
+   res.send(studentModel);
+   }).catch(function (e) {
+   res.send(e)
+   });
+   });
+
    
+ app.get("/viewTeacher/:id", function(req,res){
+   uid = req.params.id.toString();
+   teacherModel.findById(uid).then(function (teacherModel) {
+   res.send(teacherModel);
+   }).catch(function (e) {
+   res.send(e)
+   });
+   });
+
  ///Server Port
  app.listen(96);

@@ -40,7 +40,7 @@ $.ajax({
    "assignment_date":assignment_date,
    "assignment_code":assignment_code,
    "comment":comment,
-   "email":"abc@gmail.com",
+   "email":email,
    "faculty":faculty,
    "semister":semister,
    "assignment":userImage

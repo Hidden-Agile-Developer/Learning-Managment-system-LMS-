@@ -1,19 +1,4 @@
 $(document).ready(function () {
-   //  $("#error_mail").hide();
-
-    // $("#email").keyup(function () {
-    //     email = $("#email").val();
-    //     $.getJSON("http://localhost:96/userRequest/" + email, function (result1) {
-    //         if (result1.length >= 1) {
-    //             console.log("user already exists");
-    //             $("#error_mail").show();
-    //             $("error_mail").innerHtml('**email already exists');
-    //         }
-    //         else {
-    //             console.log("You can register");
-    //         }
-    //     });
-    // });
 
     $("#btn_user_register").click(function () {
         first_name = $("#first_name").val();
@@ -24,13 +9,6 @@ $(document).ready(function () {
         contact = $("#contact").val();
         password = $("#password").val();
 
-        // $.getJSON("http://localhost:96/userRequest/" + email, function (result1) {
-
-        //     if (result1.length >= 1) {
-        //         $("#error_mail").show();
-        //         $("error_mail").innerHtml('**email already exists');
-        //     }
-          //  else {
                 data = {
                     "first_name": first_name,
                     "last_name": last_name,
@@ -47,16 +25,13 @@ $(document).ready(function () {
                     data: data,
                     success: function (res, textStatus, xhr) {
                         alert('user registered !!');
+                        location.href="index.html";
                         console.log(res);
                     },
                     error: function (xhr, textStatus, errorThrown) {
                         alert('Error! to register');
                     }
                 })
-
-
-            //}
-       // });
 
     });
     $.ajax({

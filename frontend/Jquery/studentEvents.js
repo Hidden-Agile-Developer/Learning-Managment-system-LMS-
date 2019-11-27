@@ -1,4 +1,5 @@
 $(document).ready(function(){    
+  view_event();
      var tok = localStorage.getItem('token');                        
           /// dashboard creation
                $.ajax({
@@ -12,7 +13,6 @@ $(document).ready(function(){
             success: function(data) {
               $("#userName").append(data.first_name);
               $("#userImage").append( "<img src='http://localhost:96/images/"+data.profile_image+"' "+ "class='img-circle' style=width:55px;height:55px; position:relative; margin-top:5px; padding-top:25px;>");
-        //    $("#ram").append( "<img src='http://localhost:96/images/"+data.profile_image+"' "+ "class='img-circle' style=width:150px;height:150px; position:relative; margin-top:5px;>");
               $("#dataemail").append(data.email);
               $("#first_name").val(data.first_name);
               $("#last_name").val(data.last_name);
@@ -33,7 +33,7 @@ $(document).ready(function(){
             }
           });
 
-
+function view_event(){
           $.ajax({
             type: 'get',
             url: 'http://localhost:96/showEventDetails',
@@ -54,5 +54,5 @@ $(document).ready(function(){
 
 
 
-
+            }
         });

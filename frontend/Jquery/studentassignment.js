@@ -27,7 +27,6 @@ $(document).ready(function(){
           });
 
         $("#assignment_upload").click(function(){
-            alert("CLICKED");
         assignment_date=$("#assignment_date").val();
         assignment_code=$("#assignment_code").val();
         comment=$("#comment").val();
@@ -55,14 +54,11 @@ $(document).ready(function(){
                 alert('Error! to upload');
             }
 
-
         })
 
        });
 
 function view_assignment(){
- //   var urlParams = new URLSearchParams(window.location.search);
- //   var email = urlParams.get("email");
         $.ajax({  
             type: 'get',
             dataType : 'JSON',
@@ -70,7 +66,7 @@ function view_assignment(){
             success: function(data) {
                         $.each(data,function(index){
                           $("#table_assignment_student").append("<tr style'text-align:center'>"+
-                           "<td class='col-xs-3'>" +"<a href='http://localhost:96/files/"+data[index].assignment+"' download >"+data[index].assignment+"</a></td>"+
+                          "<td class='col-xs-3'>" +"<a href='http://localhost:96/files/"+data[index].assignment+"' download >"+data[index].assignment+"</a></td>"+
                             "<td class='col-xs-3'>" + data[index].assignment_code +"</td>"+
                             "<td class='col-xs-3'>" + data[index].comment +"</td>"+
                             "<td class='col-xs-3'>" + data[index].assignment_date + "</td></tr>");
@@ -81,6 +77,7 @@ function view_assignment(){
             }
           });
 
+       
     $.ajax({  
         type: 'get',
         dataType : 'JSON',
@@ -100,8 +97,8 @@ function view_assignment(){
               alert("Sorry, you are not logged in.");
             }
           });         
-       }
-
+       
+      }
    
   function delete_stud_assignment(){
     $("#table_assignment_teacher").on('click','.delete',function(){
