@@ -1,7 +1,7 @@
 $(document).ready(function () {
    // delete_section();
     delete_faculty()
-    add_faculty();
+    // add_faculty();
    // add_section();
     var student_id;
     var job_id;
@@ -109,9 +109,19 @@ $(document).ready(function () {
 
 
 
-    function add_faculty() {
+
         $("#add_course").click(function () {
             course_name = $("#course_name").val();
+            if (course_name == '') {
+                $('#course_name').attr('placeholder', 'Please enter course name');
+                $('#course_name').css({ 'border': '2px solid red','border-style':'double' });
+                $('#course_name').focus();
+              }
+        else if (!course_name.match('^[A-Za-z. ]{3,30}')) {
+          $('#course_name').attr('placeholder', 'Invalid course name');
+          $('#course_name').css({ 'border': '2px solid #ff1a1a' });
+          $('#course_name').focus();
+        }else{
 
             data = {
                 "faculty_name": course_name,
@@ -134,9 +144,9 @@ $(document).ready(function () {
 
 
             })
-
+        }
         });
-    }
+    
 
     //////
     // function add_section() {

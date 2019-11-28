@@ -4,13 +4,37 @@ $(document).ready(function () {
         email = $("#user_email").val();
         password = $("#user_password").val();
         user_type = $("#user_type").val();
-        console.log(email);
-        console.log(password);
 
-        data = {
-            "email": email,
-            "password": password
-        }
+        // console.log(email);
+        // console.log(password);
+
+         if(email == ''){
+            $('#user_email').attr('placeholder', 'Please enter your email address');
+            $('#user_email').css({ 'border': '2px solid red' });
+            $('#user_email').focus();
+          }
+          else if (!email.match('[A-Za-z_]{3,}@[A-Za-z]{3,}[.]{1}[A-Za-z.]{2,6}$')) {
+            $('#user_email').attr('placeholder', 'Please Enter Valid Email');
+            $('#user_email').css({ 'border': '2px solid #ff1a1a' });
+            $('#user_email').focus();
+          }
+
+          else if(password ==''){
+            $('#user_password').attr('placeholder', 'Please enter your contact number');
+            $('#user_password').css({ 'border': '2px solid red' });
+            $('#user_password').focus(); 
+          }
+          else if (!password.match('^(?=.*[0-9])(?=.*[A-Z])(?=.*[!@$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$')) {
+            $('#user_password').attr('placeholder', 'Enter Your Password ');
+            $('#user_password').css({ 'border': '2px solid #ff1a1a' });
+            $('#user_password').focus();
+          }
+          else{
+
+            data = {
+                "email": email,
+                "password": password
+            }
 
         if (user_type == "Admin") {
             $.ajax({
@@ -88,6 +112,7 @@ $(document).ready(function () {
         else {
             alert("Invalid usertype")
         }
+    }
     });
 
 

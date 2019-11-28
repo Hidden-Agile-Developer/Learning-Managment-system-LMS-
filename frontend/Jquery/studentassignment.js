@@ -27,10 +27,25 @@ $(document).ready(function(){
           });
 
         $("#assignment_upload").click(function(){
+<<<<<<< HEAD
+            // alert("CLICKED");
+=======
+>>>>>>> 0948245a77bf5ad28c5e289e9fa7351a68844a17
         assignment_date=$("#assignment_date").val();
         assignment_code=$("#assignment_code").val();
         comment=$("#comment").val();
         email=$("#email").val();
+
+        if (assignment_date == '') {
+          $('#assignment_date').attr('placeholder', 'Please enter assignment date');
+          $('#assignment_date').css({ 'border': '2px solid red','border-style':'double' });
+          $('#assignment_date').focus();
+        }else if(assignment_code==''){
+          $('#assignment_code').attr('placeholder', 'Please enter assignment code');
+          $('#assignment_code').css({ 'border': '2px solid red','border-style':'double' });
+          $('#assignment_code').focus();
+        }
+        else{
 
              data={
             "assignment_date":assignment_date,
@@ -55,7 +70,7 @@ $(document).ready(function(){
             }
 
         })
-
+      }
        });
 
 function view_assignment(){

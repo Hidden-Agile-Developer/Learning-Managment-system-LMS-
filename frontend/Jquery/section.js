@@ -87,13 +87,17 @@ $(document).ready(function () {
          $("#add_section").click(function () {
              subject = $("#subject").val();
              semister = $("#semister").val();
-             section = $("#section").val();
+             section1 = $("#section").val();
  
- 
+             if (section1 == '') {
+                $('#section').attr('placeholder', 'Please enter Section');
+                $('#section').css({ 'border': '2px solid red','border-style':'double' });
+                $('#section').focus();
+              }else{
              data = {
                  "subject": subject,
                  "semister": semister,
-                 "section": section
+                 "section": section1
              }
  
              $.ajax({
@@ -111,8 +115,8 @@ $(document).ready(function () {
                      alert('Error! to Add Section');
                  }
  
- 
              })
+            }
          });
      }
  
